@@ -1,6 +1,8 @@
 import "./App.css";
-import Header from "./component/Header";
 import { useState } from "react";
+import Profile from "./component/Profile";
+import WelcomePage from "./component/WelcomePage";
+import UsersData from "./data";
 
 // function App() {
 //   let [x, setX] = useState(100);
@@ -21,9 +23,37 @@ import { useState } from "react";
 // }
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [alert, setAlert] = useState(false);
+  // const [count, setCount] = useState(0);
+  // function loginHandler() {
+  //   setIsLoggedIn(!isLoggedIn);
+  //   setCount(count + 1);
+  // }
+
+  function loginHandler(userName, password) {
+    console.log("Login handler running");
+    console.log("UserName: ", userName);
+    console.log("Password: ", password);
+    UsersData.forEach((user) => {
+      if (userName === user.name && password === user.password) {
+        setIsLoggedIn(true);
+      } else {
+        console.error("Wrong Password or UserName");
+        // alert(true);
+      }
+    });
+  }
+
   return (
-    <div className="App">
-      <Header />
+    <div className="main">
+      <div className="App">
+        {isLoggedIn ? (
+          <Profile setIsLoggedIn={setIsLoggedIn} />
+        ) : (
+          <WelcomePage setLogin={loginHandler} />
+        )}
+      </div>
     </div>
   );
 }
