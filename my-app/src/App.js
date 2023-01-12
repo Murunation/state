@@ -3,6 +3,7 @@ import { useState } from "react";
 import Profile from "./component/Profile";
 import WelcomePage from "./component/WelcomePage";
 import UsersData from "./data";
+import "bootstrap/dist/css/bootstrap.css";
 
 // function App() {
 //   let [x, setX] = useState(100);
